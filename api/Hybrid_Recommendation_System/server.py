@@ -22,11 +22,6 @@ def recommend_attractions(user: dict):
     based on user's condition 
     ''' 
 
-    print(type(user))
-    print(user)
-    print("check env")
-    # print(os.environ['TRIPWEAVER_API'])
-    print("---")
     # find wheter to use which model
 
     # recommend by collaborative filtering model
@@ -39,18 +34,15 @@ def recommend_attractions(user: dict):
         attraction_tag_score_data = []
         attraction_ref = []
         try:
-            # API_ENDPOINT = f"{os.environ['TRIPWEAVER_API']}/api/attraction/getAllData"
-            API_ENDPOINT = "http://localhost:3000/api/attraction/getAllData"
-            print("a1")
+            # API_ENDPOINT = "http://localhost:3000/api/attraction/getAllData"
+            API_ENDPOINT = "http://tripweaver:3000/api/attraction/getAllData"
             res_all_attractions = requests.post(url=API_ENDPOINT).json()
-            print("a2")
             for cur_attraction in res_all_attractions['attractions']:
                 cur_tag_score = cur_attraction['attractionTag']['attractionTagFields']
                 cur_ref = (cur_attraction['_id'], cur_attraction['name'])
 
                 attraction_tag_score_data.append(list(cur_tag_score.values()))
                 attraction_ref.append(cur_ref)
-                
         except Exception as e:
             print("get all attraction data failed !")
 
@@ -70,4 +62,4 @@ def recommend_attractions(user: dict):
             print(f"{i+1}. {attraction_ref[idx][1]} (Similarity: {1 - distances[0][i]:.2f})")
             res_recommendation.append({"id": attraction_ref[idx][0],"name": attraction_ref[idx][1],"sim_score": 1 - distances[0][i]})
 
-    return {"res_recommendation": res_recommendation}
+        return {"res_recommendation": res_recommendation}

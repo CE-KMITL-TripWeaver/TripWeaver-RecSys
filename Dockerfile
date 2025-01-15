@@ -4,6 +4,8 @@ WORKDIR /hybrid_recommender_system
 
 COPY ./requirements.txt ./requirements.txt
 
+COPY ./.env ./.env
+
 RUN pip install --no-cache-dir --upgrade -r ./requirements.txt
 
 COPY ./api/Hybrid_Recommendation_System .
