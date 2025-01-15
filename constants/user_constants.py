@@ -1,17 +1,24 @@
 # based on persona 'https://www.canva.com/design/DAF3tu3oqLc/TJPmfsXlYo01Z8EGpdHqfA/edit?utm_content=DAF3tu3oqLc&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton'
-MOCK_USER = [
 
-    # page 9: love diving
-    [0.9,0.8,0,0,0,0.7,0.8,0,0,0.9,0.1,0,0,0,0,0,0,1,0,0,0.8,0,0,0,0,0,0,0,0,0,0,0,0.7,0.5,0,0],
 
-    # page 13: love art
-    [0.2,0,0,0.8,0.3,0,0.1,0.1,0,0,0,0.1,0.1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.4,0.1,0,0,0],
+### User ID of all persona generated ###
 
-    # page 14: love shopping    
-    [0.8,0.1,0.1,0.5,0.7,0.1,0.1,0.3,0.2,0.1,0.1,0.4,0.3,0.2,0.2,0.1,0.1,0.1,0.1,0.1,0.1,0.9,0.1,0.1,0.1,0.4,0.1,0.1,0.1,0.2,0.1,0.3,0.6,0.6,0.3,0.1],
-    
-    # page *: a family man, have kid
-    [0.2,0.1,0,0.3,0.1,0.1,0.1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.8,0,0,0,0,0.9,0.9,0,0]
-    
+USER_ID_LOVE_NATURE = ['677e41b2519209b0aaff4d76', '677e41b6519209b0aaff4d7b', '677e41b9519209b0aaff4d80', '677e41bc519209b0aaff4d85', '677e41bf519209b0aaff4d8a', '677e41c2519209b0aaff4d8f', '677e41c5519209b0aaff4d94', '677e41c8519209b0aaff4d99', '677e41cb519209b0aaff4d9e', '677e41ce519209b0aaff4da3', '677e41d1519209b0aaff4da8', '677e41d4519209b0aaff4dad', '677e41d7519209b0aaff4db2', '677e41da519209b0aaff4db7', '677e41de519209b0aaff4dbc', '677e41df519209b0aaff4dc1', '677e41e1519209b0aaff4dc6', '677e41e2519209b0aaff4dcb', '677e41e3519209b0aaff4dd0', '677e41e5519209b0aaff4dd5']
+
+USER_ID_LOVE_ART = ['677e4cd4519209b0aaff4f8c', '677e544b519209b0aaff4fd6', '677e544e519209b0aaff4fdb', '677e5451519209b0aaff4fe0', '677e5454519209b0aaff4fe5', '677e5457519209b0aaff4fea', '677e545a519209b0aaff4fef', '677e545d519209b0aaff4ff4', '677e5460519209b0aaff4ff9', '677e5464519209b0aaff4ffe', '677e5467519209b0aaff5003', '677e5469519209b0aaff5008', '677e546d519209b0aaff500d', '677e5470519209b0aaff5012', '677e5473519209b0aaff5017', '677e5476519209b0aaff501c', '677e547e519209b0aaff5027', '677e5484519209b0aaff5031']
+
+
+### Attraction ID manually selected to correspond with each persona
+ATTRACTION_ID_LOVE_NATURE = [
+    '675c202f9f570448ebeb484b', '675c202f9f570448ebeb484f', '675c20309f570448ebeb487d', '675c20309f570448ebeb48a1', '675c20309f570448ebeb48c2', 
+    '675c20319f570448ebeb48e0', '675c20329f570448ebeb4918', '675c20329f570448ebeb491e', '675c20339f570448ebeb4936', '675c20369f570448ebeb4a74', 
+    '675c20379f570448ebeb4ae6', '675c20309f570448ebeb48a7', '675c20309f570448ebeb48ae', '675c20319f570448ebeb48d0', '675c202f9f570448ebeb4829', 
+    '675c202f9f570448ebeb482b', '675c20309f570448ebeb489f',
 ]
 
+ATTRACTION_ID_LOVE_ART = [
+    '675c20309f570448ebeb48c6', '675c202f9f570448ebeb4867', '675c20309f570448ebeb48be', '675c20319f570448ebeb48d4', '675c20319f570448ebeb48e4', 
+    '675c20349f570448ebeb49ac', '675c20359f570448ebeb49d4', '675c20359f570448ebeb4a02', '675c20359f570448ebeb4a12', '675c20379f570448ebeb4ac8', 
+    '675c20389f570448ebeb4afc', '675c20309f570448ebeb488d', '675c20309f570448ebeb4891', '675c20309f570448ebeb48c6', '675c20319f570448ebeb48cc', 
+    '675c20359f570448ebeb49c4', '675c20359f570448ebeb4a14', '675c20389f570448ebeb4af0',
+]
