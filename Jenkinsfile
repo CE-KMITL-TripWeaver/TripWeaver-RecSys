@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        docker 'docker'  // Name of the tool you configured in Jenkins' Global Tool Configuration
-    }
-
-
     stages {
 
         stage("Clear Running Tripweaver Containers") {
