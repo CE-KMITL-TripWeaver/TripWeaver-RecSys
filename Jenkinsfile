@@ -3,16 +3,6 @@ pipeline {
 
     stages {
 
-        stage("Install Environment") {
-            steps {
-                dir('tripweaver') {
-                    echo 'Installing Environment'
-                    sh 'npm install -g pnpm'
-                    sh 'pnpm install'
-                }
-            }
-        }
-
         stage("Clear Running Tripweaver Containers") {
             steps {
                 script {
@@ -57,10 +47,12 @@ pipeline {
             }
         }
 
-        stage("Deploy on Docker"){
+        stage("Deploy"){
             steps {
-                sh "docker compose up"
+                script{
+                    sh "docker compose up"
+                }
+            }
         }
     }
-}
 }
