@@ -5,9 +5,10 @@ import requests
 from fastapi import FastAPI
 import os
 
+print("a1")
 path_to_model_content_based = "model_content-based.joblib"
 content_based_model = joblib.load(path_to_model_content_based)
-
+print("a2")
 app = FastAPI()
 
 # Health check endpoint
@@ -35,7 +36,7 @@ def recommend_attractions(user: dict):
         attraction_ref = []
         try:
             # API_ENDPOINT = "http://localhost:3000/api/attraction/getAllData"
-            API_ENDPOINT = "http://tripweaver:3000/api/attraction/getAllData"
+            API_ENDPOINT = "http://tripweaver:3000/api/attraction/getAllData" #use this if run in docker container
             res_all_attractions = requests.post(url=API_ENDPOINT).json()
             for cur_attraction in res_all_attractions['attractions']:
                 cur_tag_score = cur_attraction['attractionTag']['attractionTagFields']
