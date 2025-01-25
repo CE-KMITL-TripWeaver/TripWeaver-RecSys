@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'docker:latest' // A lightweight Docker image with Docker CLI installed
+            // args '-v /var/run/docker.sock:/var/run/docker.sock' // Mount Docker socket for host access
+        }
+    }
 
     stages {
 
