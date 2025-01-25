@@ -1,10 +1,10 @@
 pipeline {
-    agent {
-        docker {
-            image 'docker:latest' // A lightweight Docker image with Docker CLI installed
-            // args '-v /var/run/docker.sock:/var/run/docker.sock' // Mount Docker socket for host access
-        }
+    agent any
+
+    tools {
+        docker 'docker'  // Name of the tool you configured in Jenkins' Global Tool Configuration
     }
+
 
     stages {
 
