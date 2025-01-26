@@ -22,6 +22,8 @@ import joblib
 # Load environment variables from .env file
 # load_dotenv()
 
+
+
 # get attractions data
 attraction_tag_score_data = []
 attraction_ref = []
