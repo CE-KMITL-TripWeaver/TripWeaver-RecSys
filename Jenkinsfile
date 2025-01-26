@@ -64,21 +64,6 @@ pipeline {
                 }
             }
         }
-    
-        stage("Remove Old Recsys API Images") {
-            steps {
-                script {
-                    def imageIds = sh(script: 'docker images --filter "reference=tripweaver-recsys-recommender_api" -q', returnStdout: true).trim()
-
-                    if (imageIds) {
-                        sh "docker rmi ${imageIds}"
-                    } else {
-                        echo "No images with the name 'tripweaver-recsys-recommender_api' found."
-                    }
-                }
-            }
-        }
-
 
         stage("Deploy"){
             steps {
