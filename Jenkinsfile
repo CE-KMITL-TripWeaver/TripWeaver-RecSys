@@ -65,7 +65,7 @@ pipeline {
             }
         }
     
-        tage("Remove Old Recsys API Images") {
+        stage("Remove Old Recsys API Images") {
             steps {
                 script {
                     def imageIds = sh(script: 'docker images --filter "reference=tripweaver-recsys-recommender_api" -q', returnStdout: true).trim()
