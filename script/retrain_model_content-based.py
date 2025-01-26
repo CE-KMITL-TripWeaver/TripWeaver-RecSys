@@ -46,6 +46,7 @@ attraction_tag_score_matrix = np.array(attraction_tag_score_data.copy())
 knn = NearestNeighbors(n_neighbors=30, metric='cosine') # euclidean, cosine
 knn.fit(attraction_tag_score_matrix)
 
-
+print("3")
 # save model to api/Hybrid_Recommendation_System (chage path to corresponded docker container)
 joblib.dump(knn, './44model_content-based.joblib')
+print("4")
