@@ -13,6 +13,12 @@ from sklearn.neighbors import NearestNeighbors
 
 import joblib
 
+
+'''
+This script is use to retrain Content-based reccemendersystem model
+so all the paths have to fit docker container directory
+'''
+
 # get attractions data
 attraction_tag_score_data = []
 attraction_ref = []
@@ -41,5 +47,5 @@ knn = NearestNeighbors(n_neighbors=30, metric='cosine') # euclidean, cosine
 knn.fit(attraction_tag_score_matrix)
 
 
-# save model to api/Hybrid_Recommendation_System
-joblib.dump(knn, './api/Hybrid_Recommendation_System/model_content-based.joblib')
+# save model to api/Hybrid_Recommendation_System (chage path to corresponded docker container)
+joblib.dump(knn, '44model_content-based.joblib')
