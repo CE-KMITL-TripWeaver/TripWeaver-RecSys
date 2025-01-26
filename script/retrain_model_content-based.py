@@ -48,4 +48,4 @@ knn.fit(attraction_tag_score_matrix)
 
 
 # save model to api/Hybrid_Recommendation_System (chage path to corresponded docker container)
-joblib.dump(knn, '44model_content-based.joblib')
+joblib.dump(knn, './44model_content-based.joblib')
