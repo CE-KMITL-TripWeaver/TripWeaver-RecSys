@@ -7,7 +7,7 @@ sys.path.append('.')
 import constants.file_handler_constants as fh
 from constants.user_constants import *
 from constants.attraction_constants import *
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import time
 import pandas as pd
 import numpy as np
@@ -26,7 +26,7 @@ import joblib
 attraction_tag_score_data = []
 attraction_ref = []
 try:
-    API_ENDPOINT = "http://tripweaver:3000/api/attraction/getAllData"
+    API_ENDPOINT = "http://tripweaver:3000/api/attraction/getAllData" #use this if run in docker container
     res_all_attractions = requests.post(url=API_ENDPOINT).json()
     
     for cur_attraction in res_all_attractions['attractions']:

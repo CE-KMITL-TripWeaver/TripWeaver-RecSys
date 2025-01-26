@@ -47,6 +47,14 @@ pipeline {
             }
         }
 
+        stage("Deploy"){
+            steps {
+                script{
+                    sh "docker-compose up -d"
+                }
+            }
+        }
+
         stage("Retrain Model Content-based") {
             steps {
                 script {
@@ -61,14 +69,6 @@ pipeline {
                 script {
                     echo "Retrain model collaborative"
                     sh ""
-                }
-            }
-        }
-
-        stage("Deploy"){
-            steps {
-                script{
-                    sh "docker-compose up -d"
                 }
             }
         }
