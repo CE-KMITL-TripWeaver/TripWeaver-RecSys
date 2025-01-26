@@ -2,12 +2,6 @@ import sys
 import os
 import glob
 
-sys.path.append('.')
-
-import constants.file_handler_constants as fh
-from constants.user_constants import *
-from constants.attraction_constants import *
-# from dotenv import load_dotenv
 import time
 import pandas as pd
 import numpy as np
@@ -18,11 +12,6 @@ import math
 from sklearn.neighbors import NearestNeighbors
 
 import joblib
-
-# Load environment variables from .env file
-# load_dotenv()
-
-
 
 # get attractions data
 attraction_tag_score_data = []
