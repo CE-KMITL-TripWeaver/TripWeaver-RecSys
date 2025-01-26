@@ -18,5 +18,5 @@ EXPOSE 8000
 
 # CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "8000"]
 # Retrain model and run reccomender system api
-CMD ["python" "../../script1/retrain_model_content-based.py" "&&" "uvicorn" "server:app" "--host" "0.0.0.0" "--port" "8000"]
+CMD ["python", "../../script1/retrain_model_content-based.py", "&&", "uvicorn", "server:app", "--host", "0.0.0.0", "--port", "8000"]
 
