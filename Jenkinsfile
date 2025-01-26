@@ -51,7 +51,7 @@ pipeline {
             steps {
                 script {
                     echo "Retrain model content-based"
-                    sh "python3 script/Model_content-based.py"
+                    sh "python3 script/retrain_model_content-based.py"
                 }
             }
         }
