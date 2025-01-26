@@ -55,22 +55,5 @@ pipeline {
             }
         }
 
-        stage("Retrain Model Content-based") {
-            steps {
-                script {
-                    echo "Retrain model content-based"
-                    sh "python3 script/retrain_model_content-based.py"
-                }
-            }
-        }
-
-        stage("Retrain Model Collaborative") {
-            steps {
-                script {
-                    echo "Retrain model collaborative"
-                    sh ""
-                }
-            }
-        }
     }
 }
