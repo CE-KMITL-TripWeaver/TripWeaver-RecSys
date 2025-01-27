@@ -15,8 +15,8 @@ import joblib
 
 
 '''
-This script is use to retrain Content-based reccemendersystem model
-so all the paths have to fit docker container directory
+This script is used to retrain Content-based model
+so all paths must fit the Docker container directory
 '''
 
 # get attractions data
