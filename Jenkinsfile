@@ -47,7 +47,7 @@ pipeline {
             }
         }
 
-        stage("Deploy"){
+        stage("Retrain and deploy models"){
             steps {
                 script{
                     sh "docker-compose up -d"

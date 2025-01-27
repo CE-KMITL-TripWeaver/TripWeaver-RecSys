@@ -32,19 +32,15 @@ try:
 
         attraction_tag_score_data.append(list(cur_tag_score.values()))
         attraction_ref.append(cur_ref)
+
+    # train KNN Model
+    attraction_tag_score_matrix = np.array(attraction_tag_score_data.copy())
+    knn = NearestNeighbors(n_neighbors=30, metric='cosine') # euclidean, cosine
+    knn.fit(attraction_tag_score_matrix)
+
+    # save model to api/Hybrid_Recommendation_System (chage path to corresponded docker container)
+    joblib.dump(knn, './model_content-based.joblib')
         
 except Exception as e:
-    print("get all attraction data failed !")
+    print("retrain content-based failed !")
     print(e)
-
-for cur_tag, cur_ref in zip(attraction_tag_score_data, attraction_ref):
-    print(cur_ref)
-    print(cur_tag)
-
-# train KNN Model
-attraction_tag_score_matrix = np.array(attraction_tag_score_data.copy())
-knn = NearestNeighbors(n_neighbors=30, metric='cosine') # euclidean, cosine
-knn.fit(attraction_tag_score_matrix)
-
-# save model to api/Hybrid_Recommendation_System (chage path to corresponded docker container)
-joblib.dump(knn, './model_content-based.joblib')

@@ -5,10 +5,10 @@ import requests
 from fastapi import FastAPI
 import os
 
-print("a1")
+
 path_to_model_content_based = "model_content-based.joblib"
 content_based_model = joblib.load(path_to_model_content_based)
-print("a2")
+
 app = FastAPI()
 
 # Health check endpoint
