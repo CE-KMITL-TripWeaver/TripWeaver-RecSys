@@ -57,7 +57,7 @@ def recommend_attractions(user: UserInput):
             attraction_tag_score_data, attraction_ref = preprocess_attraction_data(res_all_attractions)
             
             res_recommendation = recommend_content_based(
-                user["attractionTagScore"]["attractionTagFields"],
+                user.attractionTagScore.attractionTagFields,
                 content_based_model,
                 attraction_tag_score_data,
                 attraction_ref,
