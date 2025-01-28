@@ -9,8 +9,6 @@ import sys
 sys.path.append('.')
 from services.recommendation import recommend_content_based
 from services.attraction_data import fetch_attraction_data, preprocess_attraction_data
-from schemas.user import UserInput
-from schemas.user_rating import * 
 from schemas.recommendation import RecommendationResponse
 
 path_to_model_content_based = "./models/model_content-based.joblib"
@@ -35,12 +33,13 @@ def recommend_attractions(user: dict):
 def recommend_attractions(user: dict):
     pass
 
-@app.post("/recommend", response_model=RecommendationResponse)
-def recommend_attractions(user: UserInput):
+@app.post("/recommend")
+def recommend_attractions(user: dict):
     ''' 
     reccomend attraction by either content based or collaborative filtering model
     based on user's condition 
     ''' 
+
     try:
         # find wheter to use which model
 
@@ -55,9 +54,8 @@ def recommend_attractions(user: UserInput):
             res_all_attractions = fetch_attraction_data(api_endpoint)
             
             attraction_tag_score_data, attraction_ref = preprocess_attraction_data(res_all_attractions)
-            
             res_recommendation = recommend_content_based(
-                user.attractionTagScore.attractionTagFields,
+                user["attractionTagScore"]["attractionTagFields"],
                 content_based_model,
                 attraction_tag_score_data,
                 attraction_ref,

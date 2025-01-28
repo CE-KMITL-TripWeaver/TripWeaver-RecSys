@@ -6,12 +6,5 @@ def recommend_content_based(user_tag_scores: Dict[str, float], content_based_mod
     distances, indices = content_based_model.kneighbors(user_vector)
     
     print("Top Recommendations (content-based):")
-    recommendations = [
-        {
-            "id": attraction_refs[idx][0],
-            "name": attraction_refs[idx][1],
-            "sim_score": round(1 - distances[0][i], 2),
-        }
-        for i, idx in enumerate(indices[0])
-    ]
+    recommendations = [attraction_refs[idx][0] for idx in indices[0]]
     return recommendations

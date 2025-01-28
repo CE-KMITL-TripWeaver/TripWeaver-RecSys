@@ -16,6 +16,7 @@ def preprocess_attraction_data(attractions: List[Dict]) -> Tuple[List[List[float
     attraction_refs = []
     for attraction in attractions:
         tag_scores = attraction["attractionTag"]["attractionTagFields"]
+        tag_scores = attraction["attractionTag"]["attractionTagFields"]
         attraction_data.append(list(tag_scores.values()))
         attraction_refs.append((attraction["_id"], attraction["name"]))
     return attraction_data, attraction_refs
