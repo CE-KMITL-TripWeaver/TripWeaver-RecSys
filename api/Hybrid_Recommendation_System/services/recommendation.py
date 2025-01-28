@@ -10,7 +10,7 @@ def recommend_content_based(user_tag_scores: Dict[str, float], content_based_mod
         {
             "id": attraction_refs[idx][0],
             "name": attraction_refs[idx][1],
-            "sim_score": round(1 - distances[0][i], 2),
+            "sim_score77": round(1 - distances[0][i], 2),
         }
         for i, idx in enumerate(indices[0])
     ]

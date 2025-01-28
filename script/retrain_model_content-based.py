@@ -1,8 +1,3 @@
-import sys
-import os
-import glob
-
-import time
 import pandas as pd
 import numpy as np
 import json
@@ -23,6 +18,7 @@ so all paths must fit the Docker container directory
 attraction_tag_score_data = []
 attraction_ref = []
 try:
+    # API_ENDPOINT = "http://localhost:3000/api/attraction/getAllData"
     API_ENDPOINT = "http://tripweaver:3000/api/attraction/getAllData" #use this if run in docker container
     res_all_attractions = requests.post(url=API_ENDPOINT).json()
     
@@ -39,7 +35,7 @@ try:
     knn.fit(attraction_tag_score_matrix)
 
     # save model to api/Hybrid_Recommendation_System (chage path to corresponded docker container)
-    joblib.dump(knn, './model_content-based.joblib')
+    joblib.dump(knn, './models/model_content-based.joblib')
         
 except Exception as e:
     print("retrain content-based failed !")
