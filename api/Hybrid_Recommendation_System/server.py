@@ -21,18 +21,27 @@ app = FastAPI()
 def read_root():
     return {"message": "Welcome to the Attraction Recommendation API"}
 
-@app.post("/create-user-attractionTag")
+# generate attraction tags for a new user (after answering preference questions)
+@app.post("/generate-user-attractionTag")
 def recommend_attractions(user: dict):
     pass
 
+# generate attraction tags for a new created attraction
+@app.post("/generate-attractionTag")
+def recommend_attractions(user: dict):
+    pass
+
+# retrain model (content-based)
 @app.post("/retrain-model-content-based")
 def recommend_attractions(user: dict):
     pass
 
+# retrain model (collaborative)
 @app.post("/retrain-model-collaborative")
 def recommend_attractions(user: dict):
     pass
 
+# recommend attraction using hybrid recommendation system
 @app.post("/recommend")
 def recommend_attractions(user: dict):
     ''' 
