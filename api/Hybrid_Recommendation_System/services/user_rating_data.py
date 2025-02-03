@@ -5,7 +5,7 @@ from typing import List, Dict, Tuple
 
 def fetch_user_rating_data(api_endpoint: str) -> List[Dict]:
     try:
-        response = requests.post(api_endpoint).json()
+        response = requests.get(api_endpoint).json()
         return response
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to fetch user rating data: {e}")

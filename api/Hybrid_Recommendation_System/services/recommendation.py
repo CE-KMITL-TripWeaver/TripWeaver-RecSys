@@ -2,18 +2,18 @@ import numpy as np
 import pandas as pd
 from typing import List, Dict
 
-def recommend_content_based(content_based_model, user_tag_scores: Dict[str, float], attraction_data: List[List[float]], attraction_refs: List[tuple]) -> List[str]:
+def recommend_content_based(model_content_based, user_tag_scores: Dict[str, float], attraction_data: List[List[float]], attraction_refs: List[tuple]) -> List[str]:
     user_vector = np.array(list(user_tag_scores.values())).reshape(1, -1)
-    distances, indices = content_based_model.kneighbors(user_vector)
+    distances, indices = model_content_based.kneighbors(user_vector)
     recommendations = [attraction_refs[idx][0] for idx in indices[0]]
     return recommendations
 
-def recommend_collaborative(collaborative_model, ratings_matrix: pd.DataFrame, user_id: str) -> List[str]:
+def recommend_collaborative(model_collaborative, ratings_matrix: pd.DataFrame, user_id: str) -> List[str]:
     # Find the user's ratings
     row_position = ratings_matrix.index.get_loc(user_id)
     # Get 10 neighbors(10 similar user)
     user_rating_vector = ratings_matrix.iloc[row_position, :].values.reshape(1,-1)
-    distances, indices = collaborative_model.kneighbors(user_rating_vector, n_neighbors=10+1)
+    distances, indices = model_collaborative.kneighbors(user_rating_vector, n_neighbors=10+1)
 
     # Get similar users(exclude the target user itself)
     similar_users = indices.flatten()
@@ -29,4 +29,4 @@ def recommend_collaborative(collaborative_model, ratings_matrix: pd.DataFrame, u
     # Sort recommendations by highest score
     recommendations = recommendations.sort_values(ascending=False)
 
-    return recommendations
+    return list(recommendations.reset_index()['attraction_id'].values)
