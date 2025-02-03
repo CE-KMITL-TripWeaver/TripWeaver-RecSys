@@ -16,8 +16,8 @@ so all paths must fit the Docker container directory
 
 user_rating_data = [] # [[user_id_1, attraction_id_1, rating],...]
 try:
-    API_ENDPOINT = "http://localhost:3000/api/userrating/getAll"
-    # API_ENDPOINT = "http://tripweaver:3000/api/userrating/getAll" #use this if run in docker container
+    # API_ENDPOINT = "http://localhost:3000/api/userrating/getAll"
+    API_ENDPOINT = "http://tripweaver:3000/api/userrating/getAll" #use this if run in docker container
     res_user_rating = requests.get(url=API_ENDPOINT).json()
 
     for cur_res_user_rating in res_user_rating:
@@ -34,23 +34,22 @@ try:
 
             user_rating_data.append([cur_user_id, cur_attraction_id, cur_rating_score])
 
+    df = pd.DataFrame(user_rating_data, columns=['user_id', 'attraction_id', 'rating_score'])
+    # Rows = Users, Columns = Attractions
+    ratings_matrix = df.pivot_table(
+        values = ['rating_score'], 
+        index = ['user_id'],
+        columns = ['attraction_id'],
+        aggfunc='last',
+        fill_value=0
+    )
+
+    knn = NearestNeighbors(metric='cosine')
+    knn.fit(ratings_matrix)
+
+    # save model to api/Hybrid_Recommendation_System (chage path to corresponded docker container)
+    joblib.dump(knn, './models/model_collaborative_filtering.joblib')
 
 except Exception as e:
-    print("get user_rating failed !")
+    print("retrain collaborative failed !")
     print(e)
-
-df = pd.DataFrame(user_rating_data, columns=['user_id', 'attraction_id', 'rating_score'])
-# Rows = Users, Columns = Attractions
-ratings_matrix = df.pivot_table(
-    values = ['rating_score'], 
-    index = ['user_id'],
-    columns = ['attraction_id'],
-    aggfunc='last',
-    fill_value=0
-)
-
-knn = NearestNeighbors(metric='cosine')
-knn.fit(ratings_matrix)
-
-# save model to api/Hybrid_Recommendation_System (chage path to corresponded docker container)
-joblib.dump(knn, './models/model_collaborative_filtering.joblib')
