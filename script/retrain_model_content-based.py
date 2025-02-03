@@ -10,7 +10,7 @@ import joblib
 
 
 '''
-This script is used to retrain Content-based model
+This script is used to retrain Content-based model (run when start container)
 so all paths must fit the Docker container directory
 '''
 
