@@ -24,8 +24,8 @@ try:
     for cur_res_user_rating in res_user_rating:
         cur_user_id = cur_res_user_rating['userId']
 
-        # user with no rating have no influence on this model
-        if(not len(cur_res_user_rating['rating'])):
+        # users with fewer than 35 ratings have no influence on this model.
+        if(len(cur_res_user_rating['rating']) < 35):
             continue
         
         for cur_user_rating in cur_res_user_rating['rating']:

@@ -29,4 +29,8 @@ def recommend_collaborative(model_collaborative, ratings_matrix: pd.DataFrame, u
     # Sort recommendations by highest score
     recommendations = recommendations.sort_values(ascending=False)
 
-    return list(recommendations.reset_index()['attraction_id'].values)
+    # slice to get first 30 attractions
+    recommendations = list(recommendations.reset_index()['attraction_id'].values)
+    recommendations = recommendations[:min(30, len(recommendations))]
+
+    return recommendations

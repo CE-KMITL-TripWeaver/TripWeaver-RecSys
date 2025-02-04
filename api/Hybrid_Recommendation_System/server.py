@@ -265,12 +265,17 @@ def recommend_attractions(user: Dict):
     reccomend attraction by either content based or collaborative filtering model
     based on user's condition 
     ''' 
-
+    
     try:
-        # find wheter to use which model
+        res_recommendation = []
+        is_enable_model_collab = False
+
+        # Decision Logic: choose model based on user data
+        # - if user has rated more than or equal 35 attractions, use collaborative
+        user_rating_amount = user["rating_amount"]
 
         # recommend by collaborative filtering model
-        if(True):
+        if(user_rating_amount >= 35):
             print(f"Reccomend by hybrid(collaborative) --> {datetime.datetime.now()}")
             api_endpoint = f"{os.getenv('TRIPWEAVER_API')}/api/userrating/getAll"
             res_all_user_rating = fetch_user_rating_data(api_endpoint)
@@ -281,10 +286,14 @@ def recommend_attractions(user: Dict):
                 ratings_matrix = ratings_matrix,
                 user_id = user["_id"]
             )
-            return {"res_recommendation": res_recommendation}
-        
+
+            # If it returns fewer than 30 results, fall back to Content-Based Filtering
+            if(len(res_recommendation) >= 30):
+                is_enable_model_collab = True
+                res_recommendation = []
+
         # reccomend by content based model
-        elif(False):
+        if(not is_enable_model_collab):
             print(f"Reccomend by hybrid(content-based) --> {datetime.datetime.now()}")
             api_endpoint = f"{os.getenv('TRIPWEAVER_API')}/api/attraction/getAllData"
             res_all_attractions = fetch_attraction_data(api_endpoint)
@@ -296,7 +305,9 @@ def recommend_attractions(user: Dict):
                 attraction_data = attraction_tag_score_data,
                 attraction_refs = attraction_ref,
             )
-            return {"res_recommendation": res_recommendation}
+        
+        
+        return {"res_recommendation": res_recommendation}
     
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Recommendation process failed: {e}")
