@@ -290,10 +290,11 @@ def recommend_attractions(user: Dict):
                 ratings_matrix = ratings_matrix,
                 user_id = user["_id"]
             )
-
-            # If it returns fewer than 30 results, fall back to Content-Based Filtering
+            res_recommendation.pop(0)
+            # If it returns fewer than 30 results, fall back to Content-Based
             if(len(res_recommendation) >= 30):
                 is_enable_model_collab = True
+                print("fall back to Content-Based !")
 
         # reccomend by content based model
         if(not is_enable_model_collab):
