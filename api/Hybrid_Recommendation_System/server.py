@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from typing import List, Dict, Tuple
 import joblib
 from sklearn.neighbors import NearestNeighbors
@@ -37,6 +38,14 @@ model_collaborative = joblib.load(path_to_model_collaborative)
 load_dotenv() 
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Your frontend URL
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
+    allow_headers=["*"],
+)
 
 # Health check endpoint
 @app.get("/")
@@ -290,11 +299,10 @@ def recommend_attractions(user: Dict):
                 ratings_matrix = ratings_matrix,
                 user_id = user["_id"]
             )
-            res_recommendation.pop(0)
-            # If it returns fewer than 30 results, fall back to Content-Based
+
+            # if it returns fewer than 30 results, fall back to Content-Based (is_enable_model_collab is still 'False')
             if(len(res_recommendation) >= 30):
                 is_enable_model_collab = True
-                print("fall back to Content-Based !")
 
         # reccomend by content based model
         if(not is_enable_model_collab):
