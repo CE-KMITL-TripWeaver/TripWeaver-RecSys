@@ -18,7 +18,7 @@ load_dotenv()
 
 user_rating_data = [] # [[user_id_1, attraction_id_1, rating],...]
 try:
-    API_ENDPOINT = f"{os.getenv("TRIPWEAVER_API")}/api/userrating/getAll"
+    API_ENDPOINT = f"{os.getenv('TRIPWEAVER_API')}/api/userrating/getAll"
     res_user_rating = requests.get(url=API_ENDPOINT).json()
 
     for cur_res_user_rating in res_user_rating:

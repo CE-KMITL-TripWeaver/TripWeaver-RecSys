@@ -20,7 +20,7 @@ load_dotenv()
 attraction_tag_score_data = []
 attraction_ref = []
 try:
-    API_ENDPOINT = f"{os.getenv("TRIPWEAVER_API")}/api/attraction/getAllData"
+    API_ENDPOINT = f"{os.getenv('TRIPWEAVER_API')}/api/attraction/getAllData"
     res_all_attractions = requests.post(url=API_ENDPOINT).json()
     
     for cur_attraction in res_all_attractions['attractions']:

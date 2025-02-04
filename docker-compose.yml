@@ -13,7 +13,7 @@ services:
           - tripweaver
     ports:
       - "8001:8000" # Map the host port 8001 to the container port 8000
-    networks: 
+    networks: git
       - app_network
 
   
