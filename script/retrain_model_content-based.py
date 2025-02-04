@@ -1,25 +1,26 @@
 import pandas as pd
 import numpy as np
+import os
+from dotenv import load_dotenv
 import json
 import requests
 import ast
 import math
 from sklearn.neighbors import NearestNeighbors
-
 import joblib
-
 
 '''
 This script is used to retrain Content-based model (run when start container)
 so all paths must fit the Docker container directory
 '''
 
+load_dotenv()
+
 # get attractions data
 attraction_tag_score_data = []
 attraction_ref = []
 try:
-    # API_ENDPOINT = "http://localhost:3000/api/attraction/getAllData"
-    API_ENDPOINT = "http://tripweaver:3000/api/attraction/getAllData" #use this if run in docker container
+    API_ENDPOINT = f"{os.getenv("TRIPWEAVER_API")}/api/attraction/getAllData"
     res_all_attractions = requests.post(url=API_ENDPOINT).json()
     
     for cur_attraction in res_all_attractions['attractions']:

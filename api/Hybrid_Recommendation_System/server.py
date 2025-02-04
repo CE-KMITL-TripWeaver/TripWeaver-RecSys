@@ -164,8 +164,7 @@ def retrain_model_content_based():
 
     print(f"Retrain model content-based --> {datetime.datetime.now()}")
     try:
-        api_endpoint = "http://localhost:3000/api/attraction/getAllData"
-        # api_endpoint = "http://tripweaver:3000/api/attraction/getAllData" # use this if run in docker container
+        api_endpoint = f"{os.getenv("TRIPWEAVER_API")}/api/attraction/getAllData"
         res_all_attractions = fetch_attraction_data(api_endpoint)
 
         attraction_tag_score_data, attraction_ref = preprocess_attraction_data(res_all_attractions)
@@ -191,8 +190,7 @@ def retrain_model_collaborative():
 
     print(f"Retrain model collaborative --> {datetime.datetime.now()}")
     try:
-        api_endpoint = "http://localhost:3000/api/userrating/getAll"
-        # api_endpoint = "http://tripweaver:3000/api/userrating/getAll" # use this if run in docker container
+        api_endpoint = f"{os.getenv("TRIPWEAVER_API")}/api/userrating/getAll"
         res_all_user_rating = fetch_user_rating_data(api_endpoint)
 
         ratings_matrix = preprocess_user_rating_data(res_all_user_rating)
@@ -221,8 +219,7 @@ def recommend_attractions(user: Dict):
     try:
         # reccomend by content based model
         print(f"Reccomend by content-based --> {datetime.datetime.now()}")
-        api_endpoint = "http://localhost:3000/api/attraction/getAllData"
-        # api_endpoint = "http://tripweaver:3000/api/attraction/getAllData" # use this if run in docker container
+        api_endpoint = f"{os.getenv("TRIPWEAVER_API")}/api/attraction/getAllData"
         res_all_attractions = fetch_attraction_data(api_endpoint)
 
         attraction_tag_score_data, attraction_ref = preprocess_attraction_data(res_all_attractions)
@@ -247,8 +244,7 @@ def recommend_attractions(user: Dict):
 
     try:
         print(f"Reccomend by collaborative --> {datetime.datetime.now()}")
-        api_endpoint = "http://localhost:3000/api/userrating/getAll"
-        # api_endpoint = "http://tripweaver:3000/api/userrating/getAll" # use this if run in docker container
+        api_endpoint = f"{os.getenv("TRIPWEAVER_API")}/api/userrating/getAll"
         res_all_user_rating = fetch_user_rating_data(api_endpoint)
         
         ratings_matrix = preprocess_user_rating_data(res_all_user_rating)
@@ -275,9 +271,8 @@ def recommend_attractions(user: Dict):
 
         # recommend by collaborative filtering model
         if(True):
-            print(f"Reccomend by collaborative --> {datetime.datetime.now()}")
-            api_endpoint = "http://localhost:3000/api/userrating/getAll"
-            # api_endpoint = "http://tripweaver:3000/api/userrating/getAll" # use this if run in docker container
+            print(f"Reccomend by hybrid(collaborative) --> {datetime.datetime.now()}")
+            api_endpoint = f"{os.getenv("TRIPWEAVER_API")}/api/userrating/getAll"
             res_all_user_rating = fetch_user_rating_data(api_endpoint)
             
             ratings_matrix = preprocess_user_rating_data(res_all_user_rating)
@@ -290,9 +285,8 @@ def recommend_attractions(user: Dict):
         
         # reccomend by content based model
         elif(False):
-            print(f"Reccomend by content-based --> {datetime.datetime.now()}")
-            api_endpoint = "http://localhost:3000/api/attraction/getAllData"
-            # api_endpoint = "http://tripweaver:3000/api/attraction/getAllData" # use this if run in docker container
+            print(f"Reccomend by hybrid(content-based) --> {datetime.datetime.now()}")
+            api_endpoint = f"{os.getenv("TRIPWEAVER_API")}/api/attraction/getAllData"
             res_all_attractions = fetch_attraction_data(api_endpoint)
 
             attraction_tag_score_data, attraction_ref = preprocess_attraction_data(res_all_attractions)

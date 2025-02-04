@@ -1,23 +1,24 @@
 import pandas as pd
 import numpy as np
+import os
+from dotenv import load_dotenv
 import json
 import requests
 import ast
 import math
 from sklearn.neighbors import NearestNeighbors
-
 import joblib
-
 
 '''
 This script is used to retrain Collaborative model (run when start container)
 so all paths must fit the Docker container directory
 '''
 
+load_dotenv()
+
 user_rating_data = [] # [[user_id_1, attraction_id_1, rating],...]
 try:
-    # API_ENDPOINT = "http://localhost:3000/api/userrating/getAll"
-    API_ENDPOINT = "http://tripweaver:3000/api/userrating/getAll" #use this if run in docker container
+    API_ENDPOINT = f"{os.getenv("TRIPWEAVER_API")}/api/userrating/getAll"
     res_user_rating = requests.get(url=API_ENDPOINT).json()
 
     for cur_res_user_rating in res_user_rating:

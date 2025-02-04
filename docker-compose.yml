@@ -20,8 +20,7 @@ services:
   # will remove this service later since tripweaver api is deployed
   tripweaver:
     container_name: tripweaver
-    image: tripweaver-image
-    build: .
+    image: tripweaver-image # use existing image, do NOT rebuild
     ports:
       - "3000:3000"
     networks: 
