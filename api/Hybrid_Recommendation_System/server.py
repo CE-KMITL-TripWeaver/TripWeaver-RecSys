@@ -290,7 +290,6 @@ def recommend_attractions(user: Dict):
             # If it returns fewer than 30 results, fall back to Content-Based Filtering
             if(len(res_recommendation) >= 30):
                 is_enable_model_collab = True
-                res_recommendation = []
 
         # reccomend by content based model
         if(not is_enable_model_collab):
@@ -306,7 +305,7 @@ def recommend_attractions(user: Dict):
                 attraction_refs = attraction_ref,
             )
         
-        
+
         return {"res_recommendation": res_recommendation}
     
     except Exception as e:
