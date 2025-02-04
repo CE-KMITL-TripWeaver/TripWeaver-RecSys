@@ -264,6 +264,10 @@ def recommend_attractions(user: Dict):
     ''' 
     reccomend attraction by either content based or collaborative filtering model
     based on user's condition 
+
+    - if user has rated >= 35 attractions --> use Collaborative Filtering (CF).
+        - if CF returns < 30 results --> fall back to Content-Based Filtering (CBF).
+    - if user has rated < 35 attractions --> directly use Content-Based Filtering (CBF)
     ''' 
     
     try:
