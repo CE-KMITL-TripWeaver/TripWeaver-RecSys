@@ -41,7 +41,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Your frontend URL
+    allow_origins=["*"],  # your frontend URL
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE"],
     allow_headers=["*"],
@@ -220,7 +220,7 @@ def retrain_model_collaborative():
 
 # recommend attraction using model content-based
 @app.post("/recommend-content-based")
-def recommend_attractions(user: Dict):
+def recommend_content_based(user: Dict):
     ''' 
     reccomend attraction by content based model
     ''' 
@@ -246,7 +246,7 @@ def recommend_attractions(user: Dict):
 
 # recommend attraction using model collaborative
 @app.post("/recommend-collaborative")
-def recommend_attractions(user: Dict):
+def recommend_collaborative(user: Dict):
     ''' 
     reccomend attraction by collaborative filtering model 
     ''' 
@@ -269,7 +269,7 @@ def recommend_attractions(user: Dict):
 
 # recommend attraction using hybrid recommendation system
 @app.post("/recommend-hybrid")
-def recommend_attractions(user: Dict):
+def recommend_hybrid(user: Dict):
     ''' 
     reccomend attraction by either content based or collaborative filtering model
     based on user's condition 
