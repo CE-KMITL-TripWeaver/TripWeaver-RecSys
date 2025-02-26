@@ -220,7 +220,7 @@ def retrain_model_collaborative():
 
 # recommend attraction using model content-based
 @app.post("/recommend-content-based")
-def recommend_content_based(user: Dict):
+def recommend_model_content_based(user: Dict):
     ''' 
     reccomend attraction by content based model
     ''' 
@@ -246,7 +246,7 @@ def recommend_content_based(user: Dict):
 
 # recommend attraction using model collaborative
 @app.post("/recommend-collaborative")
-def recommend_collaborative(user: Dict):
+def recommend__model_collaborative(user: Dict):
     ''' 
     reccomend attraction by collaborative filtering model 
     ''' 
